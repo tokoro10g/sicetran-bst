@@ -1,0 +1,25 @@
+\documentclass[a4paper,usejistfm]{jarticle}
+
+\begin{document}
+\title{SICE論文集向け{\textsc{Bib}\TeX} bstファイル\\(非公式)}
+\author{田所 祐一}
+\maketitle
+\section{特徴}
+\begin{itemize}
+	\item 書式を手打ちしなくていいので楽ちん
+	\item \texttt{article}, \texttt{book} など標準的なものに対応
+	\item Vol, No, ページ, 年次 等の書式をSICEの形式に準拠
+	\item 著者名の後のコロンや，カンマとピリオドの使い分けについても基本的に準拠
+\end{itemize}
+
+\section{使い方}
+\begin{center}
+	\verb|\bibliographystyle{sicetran}|
+\end{center}
+で\texttt{sicetran}スタイルを読み込むだけ．
+
+\section{サンプル}
+\bibliographystyle{sicetran}
+\bibliography{test}
+\nocite{*}
+\end{document}
