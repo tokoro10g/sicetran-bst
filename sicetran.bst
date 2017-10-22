@@ -521,13 +521,14 @@ FUNCTION {format.vol.num.pages}
 { volume empty$
     {""}
 
-    {volume bold "-" * }
+    {volume bold}
 
     if$
     number empty$
     'skip$
 
-    { number is.kanji.str$
+    {  "-" *
+        number is.kanji.str$
         {number *}
         {number *}
         if$
@@ -544,7 +545,11 @@ FUNCTION {format.vol.num.pages}
         { pop$ format.pages }
         { number empty$
 
-            { format.pages * }
+            { volume empty$
+                { format.pages * }
+                { ", " * format.pages *}
+                if$
+            }
             { ", " * format.pages * }
 
             if$
@@ -849,7 +854,7 @@ FUNCTION {book}
     if$
     format.edition output
 
-    format.date "year" output.check
+    format.date *
 
     new.block
     note output
@@ -865,19 +870,7 @@ FUNCTION {inproceedings}
         format.bvolume output
         format.number.series output
         format.pages output
-        address empty$
-        { organization publisher new.sentence.checkb
-            organization output
-            publisher output
-            format.date "year" output.check
-        }
-        { address output.nonnull
-            format.date "year" output.check
-            new.sentence
-            organization output
-            publisher output
-        }
-        if$
+        format.date *
     }
     { format.incoll.inproc.crossref output.nonnull
         format.pages output
@@ -943,9 +936,8 @@ FUNCTION {misc}
     format.authors output
     title howpublished new.block.colon.checkb
     format.title output
-    howpublished new.block.checka
     howpublished output
-    format.date output
+    format.date *
 
     new.block
     note output
