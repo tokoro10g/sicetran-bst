@@ -916,16 +916,37 @@ FUNCTION {manual}
     note output
     fin.entry
 }
+FUNCTION {bachelorthesis}
+{ output.bibitem
+    format.authors "author" output.check
+    new.block.colon
+    format.title "title" output.check
+    author is.kanji.str$
+    { "学士論文" }
+    { "Bachelor thesis" }
+    if$
+    format.thesis.type output.nonnull
+    school "school" output.check
+    address output
+    format.date *
+
+    new.block
+    note output
+    fin.entry
+}
 FUNCTION {mastersthesis}
 { output.bibitem
     format.authors "author" output.check
     new.block.colon
     format.title "title" output.check
-    new.block
-    "Master's thesis" format.thesis.type output.nonnull
+    author is.kanji.str$
+    { "修士論文" }
+    { "Master's thesis" }
+    if$
+    format.thesis.type output.nonnull
     school "school" output.check
     address output
-    format.date "year" output.check
+    format.date *
 
     new.block
     note output
@@ -949,11 +970,14 @@ FUNCTION {phdthesis}
     format.authors "author" output.check
     new.block.colon
     format.btitle "title" output.check
-    new.block
-    "PhD thesis" format.thesis.type output.nonnull
+    author is.kanji.str$
+    { "博士論文" }
+    { "PhD thesis" }
+    if$
+    format.thesis.type output.nonnull
     school "school" output.check
     address output
-    format.date "year" output.check
+    format.date *
 
     new.block
     note output
